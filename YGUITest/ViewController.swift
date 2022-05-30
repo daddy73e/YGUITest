@@ -12,26 +12,76 @@ import Then
 
 class ViewController: UIViewController {
     
-    let collectionView = UICollectionView(frame: .zero, collectionViewLayout: .init()).then {
-        let layout = LeftAlignedCollectionViewFlowLayout()
-        layout.minimumLineSpacing = 3
-        layout.minimumInteritemSpacing = 3
-        layout.sectionInset = UIEdgeInsets(top: 5, left: 2, bottom: 5, right: 2)
+    enum Section: CaseIterable {
+        case main
+    }
+    
+    var arr = ["Zedd", "Alan Walker", "David Guetta", "Avicii", "Marshmello", "Steve Aoki", "R3HAB", "Armin van Buuren", "Skrillex", "Illenium", "The Chainsmokers", "Don Diablo", "Afrojack", "Tiesto", "KSHMR", "DJ Snake", "Kygo", "Galantis", "Major Lazer", "Vicetone"
+    ]
+    
+    var dataSource: UICollectionViewDiffableDataSource<Section, String>!
+    
+    
+    let collectionView = UICollectionView(frame: .zero,
+                                          collectionViewLayout: .init()).then {
         
         $0.isScrollEnabled = false
-        $0.collectionViewLayout = layout
         $0.backgroundColor = .systemBackground
         $0.register(Test0Cell.self, forCellWithReuseIdentifier: "Test0Cell")
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        collectionView.collectionViewLayout = self.createLayout()
         self.view.addSubview(collectionView)
+        self.setupDataSource()
+        self.performQuery(with: nil)
+    }
+    
+    func setupDataSource() {
+        self.dataSource =
+        UICollectionViewDiffableDataSource<Section, String>(collectionView: self.collectionView) { (collectionView, indexPath, dj) -> UICollectionViewCell? in
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Test0Cell", for: indexPath) as? Test0Cell else { preconditionFailure() }
+            cell.configure(text: dj)
+            return cell
+        }
+    }
+    
+    func performQuery(with filter: String?) {
+        let filtered = self.arr.filter { $0.hasPrefix(filter ?? "") }
+        
+        var snapshot = NSDiffableDataSourceSnapshot<Section, String>()
+        snapshot.appendSections([.main])
+        snapshot.appendItems(filtered)
+        self.dataSource.apply(snapshot, animatingDifferences: true)
     }
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         layoutViews()
+    }
+    
+    func createLayout() -> UICollectionViewLayout {
+        let layout = UICollectionViewCompositionalLayout { (sectionIndex: Int,
+                                                            layoutEnvironment: NSCollectionLayoutEnvironment) -> NSCollectionLayoutSection in
+            let contentSize = layoutEnvironment.container.effectiveContentSize
+            let columns = contentSize.width > 800 ? 3 : 2
+            let spacing = CGFloat(10)
+            let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
+                                                  heightDimension: .fractionalHeight(1.0))
+            let item = NSCollectionLayoutItem(layoutSize: itemSize)
+            let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
+                                                   heightDimension: .absolute(32))
+            let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitem: item, count: columns)
+            group.interItemSpacing = .fixed(spacing)
+            
+            let section = NSCollectionLayoutSection(group: group)
+            section.interGroupSpacing = spacing
+            section.contentInsets = NSDirectionalEdgeInsets(top: 10, leading: 10, bottom: 10, trailing: 10)
+            
+            return section
+        }
+        return layout
     }
 }
 
@@ -42,7 +92,7 @@ extension ViewController {
 }
 
 
-/// UICollectionViewCell 최대한 왼쪽정렬시켜주는 flowLayout
+
 class LeftAlignedCollectionViewFlowLayout: UICollectionViewFlowLayout {
     override func layoutAttributesForElements(in rect: CGRect) -> [UICollectionViewLayoutAttributes]? {
         // 재정의 오버라이드 메소드 임으로 리턴값으로 layout 속성값들을 받습니다.
