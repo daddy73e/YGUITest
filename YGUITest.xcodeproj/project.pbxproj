@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		80FBFC0C2EDBE9B758A39011 /* Pods_YGUITestTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A442722B40EA01032E6461AB /* Pods_YGUITestTests.framework */; };
 		B2E46041015F7E52AFF0C62F /* Pods_YGUITest_YGUITestUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 124B16CAB54CB5A7FD0FBEA3 /* Pods_YGUITest_YGUITestUITests.framework */; };
+		C72A60E928450F340010611B /* Test0Cell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C72A60E828450F340010611B /* Test0Cell.swift */; };
 		C7829A312844F06D009B4BED /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7829A302844F06D009B4BED /* AppDelegate.swift */; };
 		C7829A332844F06D009B4BED /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7829A322844F06D009B4BED /* SceneDelegate.swift */; };
 		C7829A352844F06D009B4BED /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7829A342844F06D009B4BED /* ViewController.swift */; };
@@ -47,6 +48,7 @@
 		83A17C711BC6FA41535C080E /* Pods-YGUITest.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YGUITest.debug.xcconfig"; path = "Target Support Files/Pods-YGUITest/Pods-YGUITest.debug.xcconfig"; sourceTree = "<group>"; };
 		A442722B40EA01032E6461AB /* Pods_YGUITestTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_YGUITestTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BEE61C0581029E2F2B6F8ADB /* Pods-YGUITest-YGUITestUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YGUITest-YGUITestUITests.debug.xcconfig"; path = "Target Support Files/Pods-YGUITest-YGUITestUITests/Pods-YGUITest-YGUITestUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		C72A60E828450F340010611B /* Test0Cell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Test0Cell.swift; sourceTree = "<group>"; };
 		C7829A2D2844F06D009B4BED /* YGUITest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YGUITest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C7829A302844F06D009B4BED /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C7829A322844F06D009B4BED /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -101,6 +103,14 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		C72A60E528450EFF0010611B /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				C72A60E828450F340010611B /* Test0Cell.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		C7829A242844F06D009B4BED = {
 			isa = PBXGroup;
 			children = (
@@ -126,6 +136,7 @@
 		C7829A2F2844F06D009B4BED /* YGUITest */ = {
 			isa = PBXGroup;
 			children = (
+				C72A60E528450EFF0010611B /* Views */,
 				C7829A302844F06D009B4BED /* AppDelegate.swift */,
 				C7829A322844F06D009B4BED /* SceneDelegate.swift */,
 				C7829A342844F06D009B4BED /* ViewController.swift */,
@@ -164,7 +175,6 @@
 				30CBB0FA103E99B9C3902A7E /* Pods-YGUITestTests.debug.xcconfig */,
 				C7D43D1AA8BE9F6E532B7E96 /* Pods-YGUITestTests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -409,6 +419,7 @@
 			files = (
 				C7829A352844F06D009B4BED /* ViewController.swift in Sources */,
 				C7829A312844F06D009B4BED /* AppDelegate.swift in Sources */,
+				C72A60E928450F340010611B /* Test0Cell.swift in Sources */,
 				C7829A332844F06D009B4BED /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
